@@ -1,14 +1,15 @@
 import './App.scss';
+import { useState } from 'react';
 import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
-import { useState } from 'react';
 
-function getSortedMovies (movies, query) {
+function getSortedMovies(movies, query) {
   const preparedQuery = query.trim().toLowerCase();
 
-  return movies.filter(movie =>
-    movie.title.trim().toLowerCase().includes(preparedQuery)
-    || movie.description.trim().toLowerCase().includes(preparedQuery)
+  return movies.filter(
+    movie =>
+      movie.title.trim().toLowerCase().includes(preparedQuery) ||
+      movie.description.trim().toLowerCase().includes(preparedQuery),
   );
 }
 
@@ -17,7 +18,7 @@ export const App = () => {
   const visibleMovies = getSortedMovies(moviesFromServer, query);
 
   return (
-  <div className="page">
+    <div className="page">
       <div className="page-content">
         <div className="box">
           <div className="field">
@@ -29,7 +30,7 @@ export const App = () => {
             <div className="control">
               <input
                 type="text"
-                onChange={(event)=>{
+                onChange={event => {
                   setQuery(event.currentTarget.value);
                 }}
                 id="search-query"
